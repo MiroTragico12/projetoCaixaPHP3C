@@ -16,3 +16,46 @@ Em 2024-05-20 20:01:28, o usuário jorge acessou o sistema.
 Em 2024-05-20 20:02:14, o usuário jorge acessou o sistema.
 Em 2024-05-20 20:04:08, o usuário jorge acessou o sistema.
 Em 2024-05-20 20:06:17, o usuário jorge acessou o sistema.
+Em 2024-05-20 23:43:56, o usuário jorge acessou o sistema.
+No dia 2024-05-20 23:43:56 ocorreu o cadastro do login mariache, usando a senha 84028555
+Em 2024-05-20 23:43:56, o usuário mariache acessou o sistema.
+Em 2024-05-20 23:43:56, o usuário mariache acessou o sistema.
+Em 2024-05-20 23:51:20, o usuário jorge acessou o sistema.
+No dia 2024-05-20 23:51:20 ocorreu o cadastro do produto de id de ,produto chamado batata, no valor de 20, com a quantidade de 5.
+No dia 2024-05-20 23:51:20 ocorreu o cadastro do produto de id de ,produto chamado tulipas, no valor de 50, com a quantidade de 2.
+No dia 2024-05-20 23:51:20 ocorreu o cadastro do produto de id de ,produto chamado catupiry, no valor de 78, com a quantidade de 3.
+Em 2024-05-20 23:52:40, o usuário jorge acessou o sistema.
+No dia 2024-05-20 23:52:40 ocorreu o cadastro do produto de id de 1,produto chamado batata, no valor de 20, com a quantidade de 5.
+No dia 2024-05-20 23:52:40 ocorreu o cadastro do produto de id de 2,produto chamado sabao, no valor de 20, com a quantidade de 5.
+No dia 2024-05-20 23:52:40 ocorreu o cadastro do produto de id de 3,produto chamado feijao, no valor de 20, com a quantidade de 10.
+Em 2024-05-21 00:08:16, o usuário jorge acessou o sistema.
+No dia 2024-05-21 00:08:16 ocorreu o cadastro do produto de id de 1,produto chamado polenta, no valor de 20, com a quantidade de 5.
+Em 2024-05-21 00:12:24, o usuário jorge acessou o sistema.
+No dia 2024-05-21 00:12:24 ocorreu o cadastro do produto de id de 1,produto chamado potato, no valor de 30, com a quantidade de 5.
+No dia 2024-05-21 00:12:24 ocorreu a remocao do ID 1.
+Em 2024-05-21 00:23:50, o usuário jorge acessou o sistema.
+No dia 2024-05-21 00:23:50 ocorreu o cadastro do produto de id de 1,produto chamado batata, no valor de 200, com a quantidade de 2.
+No dia 2024-05-21 00:23:50 ocorreu a mudanca de estoque para 10.
+Em 2024-05-21 00:29:08, o usuário jorge acessou o sistema.
+No dia 2024-05-21 00:29:08 ocorreu o cadastro do produto de id de 1,produto chamado potato, no valor de 20, com a quantidade de 5.
+No dia 2024-05-21 00:29:08 ocorreu a mudanca de estoque para 100.
+No dia 2024-05-21 00:29:08 ocorreu a mudanca de estoque para 34.
+No dia 2024-05-21 00:29:08 ocorreu a remocao do ID 1.
+Em 2024-05-21 01:48:25, o usuário jorge acessou o sistema.
+No dia 2024-05-21 01:48:25 ocorreu o cadastro do produto de id de 1,produto chamado potato, no valor de 10, com a quantidade de 200.
+No dia 2024-05-21 01:48:25 ocorreu a venda do item potato no valor de 100.
+No dia 2024-05-21 01:48:25 ocorreu a venda do item potato no valor de 250.
+O valor final de todas as vendas eh 350.
+O valor final de todas as vendas eh 350.
+O valor final de todas as vendas eh 350.
+No dia 2024-05-21 01:51:53 ocorreu uma tentativa de login falha.
+Em 2024-05-21 01:52:29, o usuário jorge acessou o sistema.
+No dia 2024-05-21 01:52:29 ocorreu o cadastro do produto de id de 1,produto chamado tenis, no valor de 3000, com a quantidade de 50.
+No dia 2024-05-21 01:52:29 ocorreu a mudanca de estoque para 1000.
+No dia 2024-05-21 01:52:29 ocorreu a venda do item tenis no valor de 10000.
+No dia 2024-05-21 01:52:29 ocorreu a venda do item tenis no valor de 10000.
+No dia 2024-05-21 01:52:29 ocorreu o cadastro do login mileninha, usando a senha bonitinha
+No dia 2024-05-21 01:52:29 ocorreu a remocao do ID 1.
+O valor final de todas as vendas eh 20000.
+Em 2024-05-21 01:52:29, o usuário mileninha acessou o sistema.
+Em 2024-05-20 23:10:51, o usuário jorge acessou o sistema.

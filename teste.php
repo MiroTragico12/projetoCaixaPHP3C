@@ -9,9 +9,11 @@ global $nomeProduto;
 global $valorDosItem;
 global $estoqueDosItens;
 global $itensCadastrados;
+global $valorTotal;
 //iniciliazando id
 $ultimoId = 0; 
 //arrays
+$valorTotal = [];
 $itensCadastrados = []; 
 $login = ["jorge"];
 $password = ["jorginho"];
@@ -46,14 +48,14 @@ function executaTudo(){
     }
 } 
 function vendas($dinheiroEmCaixa){
-    global $dataFormatada, $log, $itensCadastrados;
+    global $dataFormatada, $log, $itensCadastrados, $valorPreCompra,$valorTotal;
 
     $idItem = readline("Digite o id do item que você quer vender: \n");
 
     if (isset($itensCadastrados[$idItem])) {
         $item = $itensCadastrados[$idItem];
 
-        echo "Item selecionado: {$item['nomeProduto']}, Valor: {$item['valorDosItem']}\n";
+        echo "Item selecionado: {$item['nomeProduto']}, Valor: {$item['valorDosItem']}, Estoque: {$item['estoqueDosItens']}\n";
 
         $quantidade = readline("Digite a quantidade que você quer comprar: \n");
 
@@ -77,8 +79,13 @@ function vendas($dinheiroEmCaixa){
 
             $itensCadastrados[$idItem]["estoqueDosItens"] -= $quantidade;
 
+            $valorTotal[]=$valorPreCompra;
             echo "Troco: $troco. Venda concluída com sucesso.\n";
             $log[] = "No dia $dataFormatada ocorreu a venda do item {$item['nomeProduto']} no valor de $valorPreCompra";
+            
+            $arquivo = fopen("teste.txt", "a");
+            fwrite($arquivo, "No dia $dataFormatada ocorreu a venda do item {$item['nomeProduto']} no valor de $valorPreCompra.\n");      
+            fclose($arquivo);
         } else {
             echo "Quantidade indisponível em estoque para o item selecionado.\n";
         }
@@ -120,7 +127,7 @@ function escolhas(){
     $dinheiroEmCaixa = readline("Digite o valor que você tem em caixa: \n");
     
     while (true) {
-        $operacoes = readline("1-Cadastrar \n2-Vendas \n3-Cadastro de itens\n4-deslogar");
+        $operacoes = readline("\n 1-Cadastrar \n 2-Vendas \n 3-Cadastro de itens \n 4-Log do sistema \n 5-Remove Item \n 6-Editar Item \n 7-Valor total de vendas. \n 8-Deslogar");
 
         switch ($operacoes) {
             
@@ -135,8 +142,24 @@ function escolhas(){
             case 3:
                 cadastroItens();
                 break;
-            
+
             case 4:
+                print_r($log);
+                break;  
+            
+            case 5:
+                removeItem();    
+                break;        
+            
+            case 6:
+                editaItem();    
+                break;      
+
+            case 7:
+                valorTotal();
+                break;
+
+            case 8:
                 echo "Você se deslogou do sistema.\n";
                 print_r($log);
                 print_r($login);
@@ -145,7 +168,7 @@ function escolhas(){
                 return; 
             
             default:
-                echo "Opção inválida. Por favor, selecione uma das opções válidas (1, 2, 3 ou 4).\n";
+                echo "Opção inválida. Por favor, selecione uma das opções válidas (1, 2, 3, 4, 5, 6, 7 ou 8).\n";
         }
     }
 }
@@ -172,20 +195,29 @@ function confereLogin($digiteLogin, $digiteSenha){
 
     if (!$loginSucesso) {
         echo "Senha ou login incorretos\n";
+        $arquivo = fopen("teste.txt", "a");
+        fwrite($arquivo, "No dia $dataFormatada ocorreu uma tentativa de login falha.\n");      
+        fclose($arquivo);
     }
 }
 
 function cadastroItens (){
-    global $ultimoId;
+    global $dataFormatada, $novoId;
     
     $nomeItem = readline("Digite o nome do item que você quer cadastrar: \n") ;
     $valorItem = readline("Digite o valor do Item: \n");
     $estoqueItem = readline("Digite a quantidade de estoque do item: \n");   
     cadastrarItem($nomeItem, $valorItem, $estoqueItem);  
+
+    $arquivo = fopen("teste.txt", "a");
+    fwrite($arquivo, "No dia $dataFormatada ocorreu o cadastro do produto de id de $novoId,produto chamado $nomeItem, no valor de $valorItem, com a quantidade de $estoqueItem.\n");      
+    fclose($arquivo);
+
+
 }
 
 function cadastrarItem($nomeItem, $valorItem, $estoqueItem){
-    global $ultimoId, $itensCadastrados;
+    global $ultimoId, $itensCadastrados, $novoId;
     
     $novoId = ++$ultimoId; 
     
@@ -200,6 +232,83 @@ function cadastrarItem($nomeItem, $valorItem, $estoqueItem){
     echo "Item cadastrado com ID: $novoId, Nome: $nomeItem, Valor: $valorItem, Estoque: $estoqueItem.\n";
 }
 
+
+function removeItem(){
+    global $itensCadastrados,$dataFormatada,$log;
+
+    $idRemove = readline("Digite o numero do id que voce deseja remover:");
+    if(isset($itensCadastrados[$idRemove])){
+        unset($itensCadastrados[$idRemove]);
+        echo"O item $idRemove foi removido com sucesso. \n";
+        
+        $log[]="No dia $dataFormatada ocorreu a remocao do ID $idRemove.\n";      
+        
+
+        $arquivo = fopen("teste.txt", "a");
+        fwrite($arquivo, "No dia $dataFormatada ocorreu a remocao do ID $idRemove.\n");      
+        fclose($arquivo);
+        
+       
+
+    }else{
+        echo "O item $idRemove nao foi encontrado.\n";
+    }
+}
+
+    function editaItem(){
+        global $itensCadastrados,$dataFormatada,$log;
+    
+        $idEdita = readline("Digite o numero do id que voce deseja editar: \n");
+        if(isset($itensCadastrados[$idEdita])){
+            $escolhaEditar = readline("voce deseja alterar valor ou estoque? \n");
+            if($escolhaEditar === "estoque"){
+                
+                $novoEstoque = readline("Digite o novo estoque do produto.");
+                $itensCadastrados[$idEdita]["estoqueDosItens"] = $novoEstoque;
+
+                $log[]="No dia $dataFormatada ocorreu a mudanca de estoque para $novoEstoque.\n"; 
+
+                $arquivo = fopen("teste.txt", "a");
+        fwrite($arquivo, "No dia $dataFormatada ocorreu a mudanca de estoque para $novoEstoque.\n");      
+        fclose($arquivo);
+
+        echo"Voce alterou o valor do $idEdita para $novoEstoque.";
+
+            }else if($escolhaEditar === "valor"){
+
+                $novoValor = readline("Digite o novo valor do produto.");
+                $itensCadastrados[$idEdita]["valorDosItem"] = $novoValor;
+             
+
+                $log[] ="No dia $dataFormatada ocorreu a mudanca de estoque para $novoValor.\n";  
+                $arquivo = fopen("teste.txt", "a");
+        fwrite($arquivo, "No dia $dataFormatada ocorreu a mudanca de estoque para $novoValor.\n");      
+        fclose($arquivo);
+
+        echo"Voce alterou o valor do $idEdita para $novoValor.";
+
+            }else{
+                echo "Escolha invalida. \n";
+            }
+
+        }
+    }
+
+    function valorTotal (){
+        global $valorTotal,$log;
+        $total =0;
+
+        foreach($valorTotal as $valor){
+            $total += $valor;
+        }
+
+        echo"O valor final de todas as vendas eh $total.\n";
+        $log[] ="O valor final de todas as vendas eh $total.\n";  
+                $arquivo = fopen("teste.txt", "a");
+        fwrite($arquivo, "O valor final de todas as vendas eh $total.\n");      
+        fclose($arquivo);
+    
+    }
 
     executaTudo();
 
